@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Soleil - Booking Confirmation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <a href="#" class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="M4.93 4.93l1.41 1.41"></path>
+                <path d="M17.66 17.66l1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="M6.34 17.66l-1.41 1.41"></path>
+                <path d="M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+            <div class="logo-text">
+                <span>Maison</span>
+                Soleil
+            </div>
+        </a>
+
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Your stay
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    The house
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Around town
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    Breakfast
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Messages
+                </a>
+            </li>
+        </ul>
+
+        <div class="weather-widget">
+            <div class="weather-label">Today in Cassis</div>
+            <div class="weather-temp">27°</div>
+            <div class="weather-desc">Sunny · light breeze</div>
+        </div>
+
+        <div class="sidebar-footer">
+            <p>Est. 1987</p>
+            <p style="margin-top: 0.5rem; text-transform: none; letter-spacing: 0;">Maison Soleil · 12 Rue des Oliviers · Cassis</p>
+            <p style="margin-top: 1rem;">© 2026 Maison Soleil</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="header">
+            <div>
+                <div class="breadcrumb">Booking · Confirmed</div>
+                <h1 class="welcome-title">Bienvenue, <span>Lucia.</span></h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn">Print receipt</button>
+                <button class="btn btn-primary">Add to calendar</button>
+            </div>
+        </header>
+
+        <section class="hero-section">
+            <div class="cards-container">
+                <!-- Receipt Card -->
+                <div class="card card-receipt">
+                    <div class="receipt-header">
+                        <span>Receipt</span>
+                        <span style="text-align: right;">No MS-2026<br>0421-AH</span>
+                    </div>
+                    <h2 class="receipt-title">Your stay</h2>
+                    
+                    <div class="dates-grid">
+                        <div>
+                            <div class="date-label">Check In</div>
+                            <div class="date-value">25 Apr</div>
+                            <div class="date-sub">Saturday · 15:00</div>
+                        </div>
+                        <div>
+                            <div class="date-label">Check Out</div>
+                            <div class="date-value">29 Apr</div>
+                            <div class="date-sub">Wednesday · 11:00</div>
+                        </div>
+                    </div>
+
+                    <div class="receipt-items">
+                        <div class="receipt-item">
+                            <span>Room · La Garrigue x 4 nights</span>
+                            <span>€ 620.00</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span>Breakfast x 2 guests</span>
+                            <span>€ 96.00</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span>Tourist tax</span>
+                            <span>€ 14.40</span>
+                        </div>
+                    </div>
+
+                    <div class="receipt-total">
+                        <span class="total-label">Total Paid</span>
+                        <span class="total-value">€ 730.40</span>
+                    </div>
+
+                    <div class="receipt-footer">
+                        <div class="payment-info">
+                            Paid · Wise · GBP
+                        </div>
+                        <div class="barcode"></div>
+                    </div>
+                </div>
+
+                <!-- Welcome Card -->
+                <div class="card card-welcome">
+                    <div class="welcome-card-header">
+                        <span class="welcome-label">Welcome Card</span>
+                        <svg class="sun-icon-white" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="M4.93 4.93l1.41 1.41"></path>
+                            <path d="M17.66 17.66l1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                        </svg>
+                    </div>
+                    <div class="welcome-note">A note from your host,</div>
+                    <div class="welcome-host">Margaux.</div>
+                    <p class="welcome-text">We're so glad you're coming. The shutters will be open, the lemonade cold, and the cat – Poivre – pretending not to notice you.</p>
+                    <div>
+                        <div class="welcome-room-label">Room</div>
+                        <div class="welcome-room-name">La Garrigue</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="hover-hint">Hover to fan</div>
+
+        <section class="info-grid">
+            <!-- Arrival Card -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon-box icon-arrival">
+                        <svg class="info-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <span class="info-number">01</span>
+                </div>
+                <h3 class="info-title">Check-in from 15:00</h3>
+                <div class="info-subtitle">Sat, 25 April</div>
+                <p class="info-text">Ring the brass bell by the blue door. If we're at the market, the key is in the terracotta pot by the olive tree.</p>
+            </div>
+
+            <!-- Wifi Card -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon-box icon-wifi">
+                        <svg class="info-icon" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                    </div>
+                    <span class="info-number">02</span>
+                </div>
+                <h3 class="info-title">Le Soleil · Guest</h3>
+                <div class="info-subtitle">Password below</div>
+                
+                <div class="wifi-details">
+                    <div class="wifi-row">
+                        <span class="wifi-label">Network</span>
+                        <span class="wifi-value">Le Soleil · Guest</span>
+                    </div>
+                    <div class="wifi-row">
+                        <span class="wifi-label">Password</span>
+                        <span class="wifi-value">
+                            soleil-2026
+                            <button class="copy-btn" id="copyBtn">Copy</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Breakfast Card -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon-box icon-breakfast">
+                        <svg class="info-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    </div>
+                    <span class="info-number">03</span>
+                </div>
+                <h3 class="info-title">Served 8 – 10:30</h3>
+                <div class="info-subtitle">On the terrace</div>
+                <p class="info-text">Fresh figs, Marseille honey, pain au levain, and espresso. Gluten-free option? Leave a note the night before.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>
