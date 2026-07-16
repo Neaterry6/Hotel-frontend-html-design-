@@ -7,7 +7,673 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        :root {
+            --bg-color: #fcfaf6;
+            --sidebar-bg: #fcfaf6;
+            --text-main: #1c1917;
+            --text-muted: #78716c;
+            --accent-rust: #b45309; /* Adjusted to match design */
+            --accent-rust-dark: #92400e;
+            --card-bg: #ffffff;
+            --border-color: #e7e5e4;
+            --weather-bg: #fde68a;
+            --wifi-bg: #4f46e5;
+            --breakfast-bg: #be185d;
+            --arrival-bg: #c2410c;
+            
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-rust);
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 0.9rem;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent-rust);
+        }
+
+        .nav-menu {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #f5f5f4;
+            color: var(--text-main);
+        }
+
+        .nav-link.active {
+            background-color: #fff;
+            color: var(--text-main);
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            content: '1';
+            position: absolute;
+            right: 1rem;
+            background-color: var(--accent-rust);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .weather-widget {
+            background-color: var(--weather-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .weather-widget::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 60px;
+            height: 60px;
+            background-color: #fbbf24;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .weather-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .weather-temp {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .weather-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .sidebar-footer {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            flex-grow: 1;
+            margin-left: 260px;
+            padding: 2rem 4rem;
+            max-width: 1200px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-title {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--text-main);
+        }
+
+        .welcome-title span {
+            font-style: italic;
+            color: var(--accent-rust);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--border-color);
+            background: white;
+            color: var(--text-main);
+        }
+
+        .btn:hover {
+            background-color: #f5f5f4;
+        }
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: white;
+            border-color: var(--text-main);
+        }
+
+        .btn-primary:hover {
+            background-color: #292524;
+        }
+
+        /* --- Hero Cards Section --- */
+        .hero-section {
+            position: relative;
+            height: 450px;
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .cards-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-section:hover .cards-container {
+            /* Fan effect */
+        }
+        
+        .hero-section:hover .card-receipt {
+            transform: translateX(-40px) rotate(-6deg);
+        }
+        
+        .hero-section:hover .card-welcome {
+            transform: translateX(40px) rotate(6deg);
+        }
+
+        .card {
+            position: absolute;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-receipt {
+            width: 380px;
+            padding: 2rem;
+            z-index: 1;
+            transform: rotate(-3deg);
+            left: 10%;
+        }
+
+        .card-welcome {
+            width: 420px;
+            height: 320px;
+            background: linear-gradient(135deg, #d97757 0%, #9c4221 100%);
+            color: white;
+            padding: 2rem;
+            z-index: 2;
+            transform: rotate(3deg) translateX(20px);
+            right: 10%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .receipt-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dates-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .date-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .date-value {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .date-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .receipt-items {
+            margin-bottom: 1.5rem;
+        }
+
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        .receipt-item span:last-child {
+            font-family: monospace;
+            color: var(--text-main);
+        }
+
+        .receipt-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .total-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .total-value {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+        }
+
+        .receipt-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .payment-info {
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .barcode {
+            height: 40px;
+            width: 120px;
+            background-image: repeating-linear-gradient(90deg, #000 0, #000 2px, transparent 2px, transparent 4px, #000 4px, #000 5px, transparent 5px, transparent 7px);
+            opacity: 0.8;
+        }
+
+        /* Welcome Card Styles */
+        .welcome-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .sun-icon-white {
+            width: 32px;
+            height: 32px;
+            stroke: #fcd34d;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .welcome-note {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-host {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: auto;
+        }
+
+        .welcome-room-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 0.25rem;
+        }
+
+        .welcome-room-name {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+        }
+
+        .hover-hint {
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: -2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .hover-hint::before, .hover-hint::after {
+            content: '✦';
+            font-size: 0.5rem;
+        }
+
+        /* --- Info Grid --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .icon-arrival { background-color: var(--arrival-bg); }
+        .icon-wifi { background-color: var(--wifi-bg); }
+        .icon-breakfast { background-color: var(--breakfast-bg); }
+
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .info-number {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+        
+        .info-card:nth-child(1) .info-number { color: var(--arrival-bg); opacity: 1; }
+        .info-card:nth-child(2) .info-number { color: var(--wifi-bg); opacity: 1; }
+        .info-card:nth-child(3) .info-number { color: var(--breakfast-bg); opacity: 1; }
+
+        .info-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .info-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .wifi-details {
+            background-color: #f5f5f4;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        .wifi-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .wifi-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .wifi-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .wifi-value {
+            font-family: monospace;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.6rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: white;
+            color: var(--text-main);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-section {
+                height: auto;
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .cards-container {
+                flex-direction: column;
+                height: auto;
+                gap: 2rem;
+            }
+            .card-receipt, .card-welcome {
+                position: relative;
+                left: auto;
+                right: auto;
+                transform: none !important;
+                width: 100%;
+                max-width: 400px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 100;
+                transition: transform 0.3s ease;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .welcome-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -204,7 +870,7 @@
                         <span class="wifi-label">Password</span>
                         <span class="wifi-value">
                             soleil-2026
-                            <button class="copy-btn" id="copyBtn">Copy</button>
+                            <button class="copy-btn" onclick="copyPassword()">Copy</button>
                         </span>
                     </div>
                 </div>
@@ -225,6 +891,20 @@
         </section>
     </main>
 
-    <script src="assets/js/script.js" defer></script>
+    <script>
+        function copyPassword() {
+            const password = "soleil-2026";
+            navigator.clipboard.writeText(password).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.innerText;
+                btn.innerText = "Copied!";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
